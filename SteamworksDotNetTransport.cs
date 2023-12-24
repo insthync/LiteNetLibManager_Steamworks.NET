@@ -328,8 +328,8 @@ namespace SteamworksDotNetTransportLayer
 
                     if (data.m_cbSize > 0)
                     {
-                        byte[] buffer = new byte[data.m_cbSize - 1];
-                        Marshal.Copy(data.m_pData, buffer, 0, data.m_cbSize - 1);
+                        byte[] buffer = new byte[data.m_cbSize];
+                        Marshal.Copy(data.m_pData, buffer, 0, data.m_cbSize);
                         eventQueue.Enqueue(new TransportEventData()
                         {
                             connectionId = (long)peer.steamId.m_SteamID,
@@ -344,8 +344,8 @@ namespace SteamworksDotNetTransportLayer
 
         private bool SendMessage(DeliveryMethod deliveryMethod, NetDataWriter writer, HSteamNetConnection connection)
         {
-            // Prepare data to send, not sure why data size must be +1 to make it read properly
-            byte[] data = new byte[writer.Length + 1];
+            // Prepare data to send
+            byte[] data = new byte[writer.Length];
             System.Array.Copy(writer.Data, 0, data, 0, writer.Length);
             // Create an unmanaged array and get a pointer to it
             GCHandle pinnedArray = GCHandle.Alloc(data, GCHandleType.Pinned);
