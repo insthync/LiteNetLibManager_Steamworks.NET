@@ -225,7 +225,6 @@ namespace SteamworksDotNetTransportLayer
 
         private void OnConnectionStatusChanged(SteamNetConnectionStatusChangedCallback_t callback)
         {
-            Debug.Log($"OnConnectionStatusChanged {callback.m_info.m_eState}");
             CSteamID remoteSteamId = callback.m_info.m_identityRemote.GetSteamID();
             switch (callback.m_info.m_eState)
             {
