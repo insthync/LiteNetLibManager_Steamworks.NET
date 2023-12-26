@@ -1,3 +1,4 @@
+#if UNITY_STANDALONE
 using LiteNetLib;
 using LiteNetLib.Utils;
 using LiteNetLibManager;
@@ -388,3 +389,4 @@ namespace SteamworksDotNetTransportLayer
         }
     }
 }
+#endif
